@@ -2,11 +2,10 @@ package guru.qa.allure;
 
 import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Attachment;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.text;
@@ -17,7 +16,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 import static io.qameta.allure.Allure.step;
 
-public class StepsTest {
+public class AttachmentsTest {
 
     private static final String REPOSITORY = "eroshenkoam/allure-example";
     private static final int NUMBER = 68;
@@ -28,7 +27,7 @@ public class StepsTest {
     }
 
     @Test
-    public void testPullRequestSearchWithLambdaSteps(){
+    public void testPullRequestSearchWithAttachmentsLambdaSteps(){
 
         step("Открываем главную страницу", () -> {
             open("https://github.com/");
@@ -44,7 +43,7 @@ public class StepsTest {
         });
 
         step("Открываем tab Issues", () -> {
-            attachPageSource();
+            Allure.addAttachment("Page source", "text/html", WebDriverRunner.source(), "html");
             $$("a").find(text("Issues")).click();
         });
 
@@ -55,7 +54,7 @@ public class StepsTest {
     }
 
     @Test
-    public void annotatedStepsTest(){
+    public void annotatedStepsWithAttachmentsTest(){
         WebSteps steps = new WebSteps();
 
         steps.openMainPage();
@@ -64,8 +63,5 @@ public class StepsTest {
         steps.openIssueTab();
         steps.shouldSeeIssueWithNumber(NUMBER);
     }
-    @Attachment(value = "Screenshot", type = "text/html", fileExtension = "html")
-    public byte[] attachPageSource() {
-        return WebDriverRunner.source().getBytes(StandardCharsets.UTF_8);
-    }
+
 }
