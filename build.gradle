@@ -1,10 +1,26 @@
 plugins{
     id 'java-library'
+    id 'io.qameta.allure' version "2.12.0"
 }
 
 def jUnitVersion = '5.8.1',
         webDriverManagerVersion = '5.9.3',
         selenideVersion = '7.7.3'
+
+allure {
+    report {
+        version.set('2.29.0')
+    }
+    adapter {
+        autoconfigure.set(true)
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5{
+                adapterVersion.set('2.29.0')
+            }
+        }
+    }
+}
 
 repositories {
     mavenCentral()
@@ -20,6 +36,12 @@ dependencies {
     testRuntimeOnly (
             "org.junit.jupiter:junit-jupiter-engine:$jUnitVersion"
     )
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 test{
