@@ -30,6 +30,8 @@ public class LabelsTest {
     @DisplayName("Создание Issue для авторизованного пользователя")
     @Severity(SeverityLevel.BLOCKER)
     @Link(value = "GitHub", url = "https://github.com/sergey-dubinin-work/")
+    @TmsLink("AB-125")
+    @Issue("CD-456")
     public void testAllureLabels2(){
 
     }

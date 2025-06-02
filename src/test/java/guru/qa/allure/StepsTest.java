@@ -3,6 +3,7 @@ package guru.qa.allure;
 import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
+import io.qameta.allure.Owner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -54,6 +55,7 @@ public class StepsTest {
 
     }
 
+    @Owner("dubinin.s")
     @Test
     public void annotatedStepsTest(){
         WebSteps steps = new WebSteps();
