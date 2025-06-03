@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class LabelsTest {
@@ -32,6 +33,7 @@ public class LabelsTest {
     @Link(value = "GitHub", url = "https://github.com/sergey-dubinin-work/")
     @TmsLink("AB-125")
     @Issue("CD-456")
+    @Tag("smoke")
     public void testAllureLabels2(){
 
     }
