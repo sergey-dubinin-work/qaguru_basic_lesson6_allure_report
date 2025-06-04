@@ -5,18 +5,19 @@ plugins{
 
 def jUnitVersion = '5.8.1',
         webDriverManagerVersion = '5.9.3',
-        selenideVersion = '7.7.3'
+        selenideVersion = '7.7.3',
+        allureVersion = '2.29.0'
 
 allure {
     report {
-        version.set('2.29.0')
+        version.set(allureVersion)
     }
     adapter {
         autoconfigure.set(true)
         aspectjWeaver.set(true)
         frameworks {
             junit5{
-                adapterVersion.set('2.29.0')
+                adapterVersion.set(allureVersion)
             }
         }
     }
@@ -32,7 +33,7 @@ dependencies {
             "io.github.bonigarcia:webdrivermanager:$webDriverManagerVersion",
             "com.codeborne:selenide:$selenideVersion",
             "com.github.javafaker:javafaker:1.0.2",
-            'io.qameta.allure:allure-selenide:2.29.0'
+            "io.qameta.allure:allure-selenide:$allureVersion"
     )
     testRuntimeOnly (
             "org.junit.jupiter:junit-jupiter-engine:$jUnitVersion"
